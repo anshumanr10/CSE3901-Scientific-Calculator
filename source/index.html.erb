@@ -1,12 +1,29 @@
-<!--Author Yunfeng Wang 7/1/2025 -->
-<!--screen:Initialized with the value 0, will be dynamically updated via JavaScript as the user inputs numbers/operators.-->
-<!--memory:Placeholder for memory/history display (to be implemented later).-->
+<!-- @author Anshuman Ranjan -->
 
-<div class="main-grid">
-    <div id="screen">0</div>
-    <div id="memory">Memory: [empty]</div>
+<section id="calculator">
+  <h1> Scientific Calculator </h1>
+
+  <div id= "screen">
+    <p> 0 </p>
   </div>
-
-  <script src="js/equation.js"></script>
-  <script src="js/math.js"></script>
-  <script src="script.js"></script>
+  <div id= "memory">
+    <p> 0 </p>
+  </div>
+  <div id= "history">
+    <p> Empty </p>
+  </div>
+  <div id= "buttons">
+    <div id= "memory_buttons">
+      <p> MC  MR  M+  M-  MS </p>
+    </div>
+    <div id= "operations">
+      <p> /   x   -   +  = </p>
+    </div>
+    <div id= "functions">
+      <p> sq(x)   sqrt(x)   1/x   to_percent(x) </p>
+    </div>
+    <div id= "numbers">
+      <%= partial "partials/numbers" %>
+    </div>
+  </div>
+</section>
