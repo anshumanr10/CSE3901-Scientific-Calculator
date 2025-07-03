@@ -1,6 +1,7 @@
-/* Created Yunfeng Wang 7/1/2025 */
+/* Author Yunfeng Wang 7/1/2025
+ * style.css 
+ */
 
-/* style.css */
 body {
   font-family: sans-serif;
   background-color: #fefefe;
@@ -13,6 +14,8 @@ body {
   gap: 12px;
 }
 
+/* Author Yunfeng Wang 7/1/2025
+ */
 #screen, #memory {
   background-color: #e9f1ff;
   border: 2px solid #ccc;
