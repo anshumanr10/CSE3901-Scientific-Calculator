@@ -16,7 +16,7 @@ body {
 
 /* Author Yunfeng Wang 7/1/2025
  */
-#screen, #memory {
+#screen, #memory-history {
   background-color: #e9f1ff;
   border: 2px solid #ccc;
   padding: 15px;
@@ -24,4 +24,14 @@ body {
   border-radius: 6px;
   min-height: 60px;
   word-wrap: break-word;
+}
+
+.toggle-buttons {
+  margin-bottom: 10px;
+}
+.toggle-panel {
+  display: block;
+}
+.toggle-panel.hidden {
+  display: none;
 }
