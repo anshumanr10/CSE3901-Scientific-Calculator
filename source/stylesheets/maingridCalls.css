@@ -1,0 +1,9 @@
+/*
+Author Sam Cubberly 7 4
+Created identifiers for the equals button, to allow function to be called.
+ */
+
+button#equalButton {
+  width: 300px;
+  height: 300px;    
+}
