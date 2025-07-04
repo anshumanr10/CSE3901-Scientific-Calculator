@@ -1,0 +1,24 @@
+<!-- author Yunfeng Wang 7/3/2025-->
+<!-- generates the memory-history and screen -->
+<div class="main-grid">
+  <div id="screen" class="display-screen">
+    <p>0</p>
+  </div>
+
+  <div id="memory_history" class="toggle-area">
+    <!-- Toggle Buttons -->
+    <div class="toggle-buttons">
+        <button onclick="showMemory()">Memory</button>
+        <button onclick="showHistory()">History</button>
+    </div>
+
+    <!-- Panels -->
+    <div id="memory" class="toggle-panel memory-panel">
+      <p>0</p>
+    </div>
+
+    <div id="history" class="toggle-panel history-panel hidden">
+      <p>Empty</p>
+    </div>
+  </div>
+</div>
