@@ -1,0 +1,9 @@
+#@author Anshuman Ranjan
+#@created 7/4/25
+#description List containing all the CSS stylesheets for the project to be imported
+
+index.css: stylesheets/index.css
+style.css: stylesheets/style.css
+
+#Imported fonts
+google_fonts: https://fonts.googleapis.com/css2?family=Nunito&family=Roboto&display=swap

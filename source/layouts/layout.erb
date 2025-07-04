@@ -8,7 +8,11 @@
     <meta charset="utf-8">
     <!-- Use the title from a page's frontmatter if it has one -->
     <title><%= current_page.data.title || "JavaScript Calculator" %></title>
-    <%= stylesheet_link_tag "style" %>
+        <!-- @author Anshuman Ranjan - Import all the css files into the project -->
+    <% data.stylesheets.each do |css_name, file_path| %>
+		<link rel = "stylesheet" href=<%=file_path%>>
+		<%end%>
+        <!-- end of contribution Anshuman Ranjan -->
 
   </head>
   <body>
