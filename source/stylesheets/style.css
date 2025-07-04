@@ -8,7 +8,7 @@ body {
   padding: 20px;
 }
 
-.main-grid {
+.screen-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px;
