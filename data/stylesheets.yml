@@ -4,6 +4,7 @@
 
 index.css: stylesheets/index.css
 style.css: stylesheets/style.css
+maingridCalls.css: stylesheets/maingridCalls.css
 
 #Imported fonts
 google_fonts: https://fonts.googleapis.com/css2?family=Nunito&family=Roboto&display=swap

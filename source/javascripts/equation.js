@@ -29,8 +29,9 @@ class Equation {
   }
 
   //Author Sam Cubberly 7/3/2025
+  //@edited Anshuman Ranjan: removed "function" token from beginning of function definition
   //Compute the equation and return a float equivalent to the equation
-  function compute(arr){
+  compute(arr){
     if( arr.length == 1 ){
       return arr[0];
     }
@@ -79,9 +80,10 @@ class Equation {
   }
 
   //Author Sam Cubberly 7/3
+  //@edited Anshuman Ranjan: removed "function" token from beginning of function definition
   //Find the inner most set of parenthesis, and then returns the indices of the open and closed
   //parenthesis as [ open , closed ]
-  function innerPar(arr){
+  innerPar(arr){
     leftIndex = 0;
     parList = new Array(arr.length);
     for( i = 0 ; i < arr.length ; i++ ){
@@ -94,6 +96,11 @@ class Equation {
     }
     return -1;
   }
+
+  //@author Anshuman Ranjan
+  //@created 7/4/25
+  //@description parse the array to find consecutive numbers w/ decimals and negators to create a float value
+  
 
 }
 

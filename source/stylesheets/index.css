@@ -26,7 +26,7 @@ body {
   background-color: #2d2d30;
   border-radius: 16px;
   padding: 20px;
-  width: 400px;
+  width: 600px; /*NEEDS TO BE CHANGED TO % VALUE ONCE DESIGN FINALIZED*/
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
   flex-direction: column;
   gap: 15px;
@@ -93,10 +93,10 @@ body {
 }
 
 #numbers {
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
 }
 
-/* Styling buttons in the partials (assuming you use <button>) */
+/* Styling buttons in the partials*/
 #buttons button {
   background-color: #3b3b3d;
   border: none;
