@@ -3,6 +3,8 @@
 
 //Edited Sam Cubberly 7/3 - Added the compute function and the innerPar function
 
+//Edited Oliver Shen 7/4 - Added more statements in the compute function temporary
+
 class Equation {
   constructor() {
     this.equation = [];
@@ -91,6 +93,58 @@ class Equation {
       }
     }
     return -1;
+  }
+
+}
+
+// Author Oliver Shen 7/3/2025
+// need to be add after the () and before *、/、+、- in function compute after cofirming by stand up meeting
+Equation.prototype.computeWithFuncs = function(arr) {
+  while (arr.indexOf("squared") !== -1) {
+    let idx = arr.indexOf("squared");
+    arr.splice(idx - 1, 2, MathFunction.squared(arr[idx - 1]));
+  }
+  while (arr.indexOf("factorial") !== -1) {
+    let idx = arr.indexOf("factorial");
+    arr.splice(idx - 1, 2, MathFunction.factorial(arr[idx - 1]));
+  }
+  while (arr.indexOf("abs") !== -1) {
+    let idx = arr.indexOf("abs");
+    arr.splice(idx - 1, 2, MathFunction.abs(arr[idx - 1]));
+  }
+  while (arr.indexOf("reciprocal") !== -1) {
+    let idx = arr.indexOf("reciprocal");
+    arr.splice(idx - 1, 2, MathFunction.reciprocal(arr[idx - 1]));
+  }
+ 
+  while (arr.indexOf("squareRoot") !== -1) {
+    let idx = arr.indexOf("squareRoot");
+    arr.splice(idx - 1, 2, MathFunction.squareRoot(arr[idx - 1]));
+  }
+  while (arr.indexOf("log10") !== -1) {
+    let idx = arr.indexOf("log10");
+    arr.splice(idx - 1, 2, MathFunction.log10(arr[idx - 1]));
+  }
+  while (arr.indexOf("ln") !== -1) {
+    let idx = arr.indexOf("ln");
+    arr.splice(idx - 1, 2, MathFunction.ln(arr[idx - 1]));
+  }
+  while (arr.indexOf("exp") !== -1) {
+    let idx = arr.indexOf("exp");
+    arr.splice(idx - 1, 2, MathFunction.exp(arr[idx - 1]));
+  }
+  while (arr.indexOf("tenPower") !== -1) {
+    let idx = arr.indexOf("tenPower");
+    arr.splice(idx - 1, 2, MathFunction.tenPower(arr[idx - 1]));
+  }
+
+  while (arr.indexOf("power") !== -1) {
+    let idx = arr.indexOf("power");
+    arr.splice(idx - 1, 3, MathFunction.power(arr[idx - 1], arr[idx + 1]));
+  }
+  while (arr.indexOf("mod") !== -1) {
+    let idx = arr.indexOf("mod");
+    arr.splice(idx - 1, 3, MathFunction.mod(arr[idx - 1], arr[idx + 1]));
   }
 
 }
