@@ -3,71 +3,71 @@
 //Edited Oliver Shen 7/3/2025
 // Math class for more scientific functions 
 
-class MathFunction {
+function MathFunction() {
 
   // Author Yunfeng Wang 7/2/2025
   // Calculates the exponent-th root of num
-  static squareRoot(num, exponent) {
+  MathFunction.prototype.squareRoot = function(num, exponent) {
     return Math.pow(num, 1 / exponent);
   }
   
   // Author Yunfeng Wang 7/2/2025
   // Calculates the square of a number
-  static squared(num) {
+  MathFunction.prototype.squared = function(num) {
     return Math.pow(num, 2);
   }
 
   // Author Oliver Shen 7/3/2025
   // Calculates x^y
-  static power(base, exponent) {
+  MathFunction.prototype.power = function(base, exponent) {
     return Math.pow(base, exponent);
   }
 
   // Author Oliver Shen 7/3/2025
   // Calculates 10^x
-  static tenPower(num) {
+  MathFunction.prototype.tenPower = function(num) {
     return Math.pow(10, num);
   }
 
   // Author Oliver Shen 7/3/2025
   // Calculates log(x)
-  static log10(num) {
+  MathFunction.prototype.log10 = function(num) {
     return Math.log10(num);
   }
 
   // Author Oliver Shen 7/3/2025
   // Calculates ln(x)
-  static ln(num) {
+ MathFunction.prototype.ln = function(num) {
     return Math.log(num);
   }
 
   // Author Oliver Shen 7/3/2025
   // Calculates 1/x
-  static reciprocal(num) {
+  MathFunction.prototype.reciprocal = function(num) {
     return 1 / num;
   }
   
   // Author Oliver Shen 7/3/2025
   // Calculates |x|
-  static abs(num) {
+  MathFunction.prototype.abs = function(num) {
     return Math.abs(num);
   }
 
   // Author Oliver Shen 7/3/2025
   // Calculates exp(x)
-  static exp(num) {
+  MathFunction.prototype.exp = function(num) {
     return Math.exp(num);
   }
 
   // Author Oliver Shen 7/3/2025
   // Calculates mod
-  static mod(dividend, divisor) {
+  MathFunction.prototype.mod = function(dividend, divisor) {
     return dividend % divisor;
   }
 
   // Author Oliver Shen 7/3/2025
   // Calculates n!
-  static factorial(num) {
+  MathFunction.prototype.factorial = function(num) {
     if (num < 0) return NaN;
     if (num === 0 || num === 1) return 1;
     let result = 1;
