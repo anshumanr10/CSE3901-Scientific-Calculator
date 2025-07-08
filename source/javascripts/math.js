@@ -10,7 +10,7 @@ class MathFunction {
   static squareRoot(num, exponent) {
     return Math.pow(num, 1 / exponent);
   }
-
+  
   // Author Yunfeng Wang 7/2/2025
   // Calculates the square of a number
   static squared(num) {

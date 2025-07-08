@@ -24,8 +24,9 @@ class Equation {
 
   //Author Yunfeng Wang 7/2/2025
   // Convert the array into a display string
+  // edit Yunfeng Wang, remove space between elements.
   to_s() {
-    return this.equation.join(" ");
+    return this.equation.join("");
   }
 
   //Author Sam Cubberly 7/3/2025

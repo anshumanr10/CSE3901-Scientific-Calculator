@@ -11,31 +11,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
   buttons.forEach(button => {
     const value = button.dataset.value;
-    // Skip buttons that don't have a data-value attribute
+
+    // Skip buttons without a data-value attribute
     if (!value) return;
-     /**
-     * When a button is clicked, perform the corresponding operation:
-     * "=": Evaluate the expression using compute()
-     * "C": Clear all tokens
-     * "←": Remove the last token
-     * Otherwise: Add the token to the equation
-     */
+
     button.addEventListener("click", () => {
-      if (value === "=") {
-        // use compute() method from equation.js
-        const result = compute(eq.equation);
-        eq.equation = [result]; 
-        updateDisplay();
-      } else if (value === "C") {
-        eq.equation = [];
-        updateDisplay();
-      } else if (value === "←") {
-        eq.rem_op(); // delete the latest element
-        updateDisplay();
-      } else {
-        eq.add_op(value);
-        updateDisplay();
+      switch (value) {
+        case "=":
+          const result = compute(eq.equation);
+          eq.equation = [result];
+          break;
+        case "C":
+          eq.equation = [];
+          break;
+        case "⌫":
+          eq.rem_op();
+          break;
+        default:
+          eq.add_op(value);
       }
+
+      updateDisplay();
     });
   });
 });
@@ -61,8 +57,11 @@ function showMemory() {
     history.classList.add("hidden");
   }
 }
+
+//probably overlap here marked 
+
 /**
- * Show the history panel and hide the memory panel, typically triggered by the "History" button.
+ * Show the history panel and hide the memory panel, tssypically triggered by the "History" button.
  */
 function showHistory() {
   const memory = document.getElementById("memory");
@@ -72,6 +71,9 @@ function showHistory() {
     memory.classList.add("hidden");
   }
 }
+
+//use a grid for this function maybe. or refactor ? maybe? 
+
 // Expose toggle functions globally for inline <button onclick=""> use
 window.showMemory = showMemory;
 window.showHistory = showHistory;
