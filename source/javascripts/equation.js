@@ -105,54 +105,129 @@ class Equation {
 
 }
 
-// Author Oliver Shen 7/3/2025
-// need to be add after the () and before *、/、+、- in function compute after cofirming by stand up meeting
-Equation.prototype.computeWithFuncs = function(arr) {
-  while (arr.indexOf("squared") !== -1) {
-    let idx = arr.indexOf("squared");
-    arr.splice(idx - 1, 2, MathFunction.squared(arr[idx - 1]));
-  }
-  while (arr.indexOf("factorial") !== -1) {
-    let idx = arr.indexOf("factorial");
-    arr.splice(idx - 1, 2, MathFunction.factorial(arr[idx - 1]));
-  }
-  while (arr.indexOf("abs") !== -1) {
-    let idx = arr.indexOf("abs");
-    arr.splice(idx - 1, 2, MathFunction.abs(arr[idx - 1]));
-  }
-  while (arr.indexOf("reciprocal") !== -1) {
-    let idx = arr.indexOf("reciprocal");
-    arr.splice(idx - 1, 2, MathFunction.reciprocal(arr[idx - 1]));
-  }
- 
-  while (arr.indexOf("squareRoot") !== -1) {
-    let idx = arr.indexOf("squareRoot");
-    arr.splice(idx - 1, 2, MathFunction.squareRoot(arr[idx - 1]));
-  }
-  while (arr.indexOf("log10") !== -1) {
-    let idx = arr.indexOf("log10");
-    arr.splice(idx - 1, 2, MathFunction.log10(arr[idx - 1]));
-  }
-  while (arr.indexOf("ln") !== -1) {
-    let idx = arr.indexOf("ln");
-    arr.splice(idx - 1, 2, MathFunction.ln(arr[idx - 1]));
-  }
-  while (arr.indexOf("exp") !== -1) {
-    let idx = arr.indexOf("exp");
-    arr.splice(idx - 1, 2, MathFunction.exp(arr[idx - 1]));
-  }
-  while (arr.indexOf("tenPower") !== -1) {
-    let idx = arr.indexOf("tenPower");
-    arr.splice(idx - 1, 2, MathFunction.tenPower(arr[idx - 1]));
-  }
 
-  while (arr.indexOf("power") !== -1) {
-    let idx = arr.indexOf("power");
-    arr.splice(idx - 1, 3, MathFunction.power(arr[idx - 1], arr[idx + 1]));
-  }
-  while (arr.indexOf("mod") !== -1) {
-    let idx = arr.indexOf("mod");
-    arr.splice(idx - 1, 3, MathFunction.mod(arr[idx - 1], arr[idx + 1]));
-  }
+// Author Yunfeng Wang 7/2/2025
+// notes: created squared: x² (postfix) and sqrt: √[ ... ] method
+// Edited Oliver Shen 7/3/2025
+// notes: Added more methods except sqrt and squared, then combined them together as a function
+Equation.prototype.computeWithMoreMethod = function(arr) {
+    // Author Yunfeng Wang 7/2/2025
+    // squared: x² (postfix)
+    while (arr.indexOf("^2") !== -1) {
+        let idx = arr.indexOf("^2");
+        arr.splice(idx - 1, 2, Math.pow(arr[idx - 1], 2));
+    }
 
+    // factorial: n! (postfix) We do not have factorial method in JavaScript Math libarary
+    while (arr.indexOf("!") !== -1) {
+        let idx = arr.indexOf("!");
+        let n = arr[idx - 1];
+        if (n < 0) arr.splice(idx - 1, 2, NaN);
+        else if (n === 0 || n === 1) arr.splice(idx - 1, 2, 1);
+        else {
+            let result = 1;
+            for (let i = 2; i <= n; i++) result *= i;
+            arr.splice(idx - 1, 2, result);
+        }
+    }
+    // absolute value: |x| (postfix, usually | at start and end)
+    while (arr.indexOf("|") !== -1) {
+        let open = arr.indexOf("|");
+        let close = arr.indexOf("|", open + 1);
+        if (close === -1) break; // unmatched
+        let param = arr.slice(open + 1, close);
+        let val = this.computeWithMoreMethod(param);
+        arr.splice(open, close - open + 1, Math.abs(val));
+    }
+
+    // Author Yunfeng Wang 7/2/2025
+    // notes: Calculates the exponent-th root of num - sqrt: √[ ... ],
+    while (arr.indexOf("√") !== -1) {
+        let idx = arr.indexOf("√");
+        if (arr[idx + 1] === "[") {
+            let end = findMatchingBracket(arr, idx + 1);
+            let param = arr.slice(idx + 2, end);
+            let val = this.computeWithMoreMethod(param);
+            arr.splice(idx, end - idx + 1, Math.sqrt(val));
+        } else {
+            // fallback for √x
+            arr.splice(idx, 2, Math.sqrt(arr[idx + 1]));
+        }
+    }
+    // exp: exp[ ... ]
+    while (arr.indexOf("exp") !== -1) {
+        let idx = arr.indexOf("exp");
+        if (arr[idx + 1] === "[") {
+            let end = findMatchingBracket(arr, idx + 1);
+            let param = arr.slice(idx + 2, end);
+            let val = this.computeWithMoreMethod(param);
+            arr.splice(idx, end - idx + 1, Math.exp(val));
+        }
+    }
+    // 10^: 10^[ ... ]
+    while (arr.indexOf("10^") !== -1) {
+        let idx = arr.indexOf("10^");
+        if (arr[idx + 1] === "[") {
+            let end = findMatchingBracket(arr, idx + 1);
+            let param = arr.slice(idx + 2, end);
+            let val = this.computeWithMoreMethod(param);
+            arr.splice(idx, end - idx + 1, Math.pow(10, val));
+        }
+    }
+    // 1/: 1/[ ... ]
+    while (arr.indexOf("1/") !== -1) {
+        let idx = arr.indexOf("1/");
+        if (arr[idx + 1] === "[") {
+            let end = findMatchingBracket(arr, idx + 1);
+            let param = arr.slice(idx + 2, end);
+            let val = this.computeWithMoreMethod(param);
+            arr.splice(idx, end - idx + 1, 1 / val);
+        }
+    }
+    // ^: x^[ ... ]
+    while (arr.indexOf("^") !== -1) {
+        let idx = arr.indexOf("^");
+        if (arr[idx + 1] === "[") {
+            let end = findMatchingBracket(arr, idx + 1);
+            let param = arr.slice(idx + 2, end);
+            let val = this.computeWithMoreMethod(param);
+            arr.splice(idx - 1, end - idx + 2, Math.pow(arr[idx - 1], val));
+        }
+    }
+    // log: log[ ... ]
+    while (arr.indexOf("log") !== -1) {
+        let idx = arr.indexOf("log");
+        if (arr[idx + 1] === "[") {
+            let end = findMatchingBracket(arr, idx + 1);
+            let param = arr.slice(idx + 2, end);
+            let val = this.computeWithMoreMethod(param);
+            let result = (typeof Math.log10 === "function") ? Math.log10(val) : Math.log(val) / Math.LN10;
+            arr.splice(idx, end - idx + 1, result);
+        }
+    }
+    // ln: ln[ ... ]
+    while (arr.indexOf("ln") !== -1) {
+        let idx = arr.indexOf("ln");
+        if (arr[idx + 1] === "[") {
+            let end = findMatchingBracket(arr, idx + 1);
+            let param = arr.slice(idx + 2, end);
+            let val = this.computeWithMoreMethod(param);
+            arr.splice(idx, end - idx + 1, Math.log(val));
+        }
+    }
+    // mod: x mod y 
+    while (arr.indexOf("mod") !== -1) {
+        let idx = arr.indexOf("mod");
+        arr.splice(idx - 1, 3, arr[idx - 1] % arr[idx + 1]);
+    }
+
+function findMatchingBracket(arr, openIdx) {
+    let depth = 0;
+    for (let i = openIdx; i < arr.length; i++) {
+        if (arr[i] === "[") depth++;
+        if (arr[i] === "]") depth--;
+        if (depth === 0) return i;
+    }
+    return -1;
+}
 }
