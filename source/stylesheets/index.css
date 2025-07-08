@@ -124,3 +124,61 @@ body {
 #buttons button.equal:hover {
   background-color: #2899f5;
 }
+
+
+/*
+ * Author Yunfeng Wang
+ */
+#calculator-wrapper {
+  position: relative;
+}
+
+#side-panel {
+  position: fixed; 
+  top: 80px;        
+  right: 0;
+  height: auto;     
+  max-height: 80vh;
+  border-left: 2px solid #333;
+  transform: translateX(100%);
+}
+
+#side-panel.collapsed {
+  transform: translateX(100%);
+}
+
+.toggle-tab {
+  position: fixed;
+  right: 250px;
+  top: 80px;
+  width: 20px;
+  height: 50px;
+  background-color: #333;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 9999;
+  border-radius: 5px 0 0 5px;
+}
+
+#memory-panel, #history-panel {
+  margin-bottom: 20px;
+}
+
+#memory-display {
+  color: #ccc;
+  font-size: 0.9em;
+}
+
+#history-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+#history-list li {
+  color: #ccc;
+  font-size: 0.9em;
+  margin-bottom: 5px;
+}

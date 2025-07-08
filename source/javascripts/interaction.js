@@ -74,6 +74,14 @@ function showHistory() {
 
 //use a grid for this function maybe. or refactor ? maybe? 
 
+function toggleSidePanel() {
+  const panel = document.getElementById("side-panel");
+  const tab = panel.querySelector(".toggle-tab");
+  panel.classList.toggle("collapsed");
+  tab.textContent = panel.classList.contains("collapsed") ? "⮞" : "⮜";
+}
+
+
 // Expose toggle functions globally for inline <button onclick=""> use
 window.showMemory = showMemory;
 window.showHistory = showHistory;
