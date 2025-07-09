@@ -26,7 +26,6 @@ body {
   background-color: #2d2d30;
   border-radius: 16px;
   padding: 20px;
-  width: 600px; /*NEEDS TO BE CHANGED TO % VALUE ONCE DESIGN FINALIZED*/
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
   flex-direction: column;
   gap: 15px;
@@ -44,7 +43,7 @@ body {
 #screen,
 #memory,
 #history {
-  background-color: #1e1e1e;
+  background-color: #d7d7d7;
   padding: 10px 15px;
   border-radius: 8px;
   box-shadow: inset 0 0 4px rgba(0,0,0,0.8);
@@ -115,16 +114,6 @@ body {
 #buttons button.operator {
   background-color: #4a4a4a;
 }
-
-#buttons button.equal {
-  background-color: #0078d7;
-  color: white;
-}
-
-#buttons button.equal:hover {
-  background-color: #2899f5;
-}
-
 
 /*
  * Author Yunfeng Wang
