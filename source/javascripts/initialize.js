@@ -68,11 +68,15 @@ document.addEventListener("DOMContentLoaded", function() {
 
 	document.getElementById("clearButton").addEventListener("click", function() {
 		expression.equation = [];
+		console.log("clear button");
+		console.log(expression.equation);
 		display.textContent = (expression.to_s());
         });
 
 	document.getElementById("deleteButton").addEventListener("click", function(){
 		expression.rem_op();
+		console.log("delete button");
+                console.log(expression.equation);
 		display.textContent = (expression.to_s());
 	});
 
@@ -83,6 +87,14 @@ document.addEventListener("DOMContentLoaded", function() {
 		}else{
 			menuText.classList.add("hiddenMenu");
 		}
+	});
+
+	parenthesisFunction = document.querySelectorAll("button.parenthesis");
+	parenthesisFunction.forEach((parenthesis) => {
+		parenthesis.addEventListener("click", function(){
+			expression.add_op( parenthesis.getAttribute("data-value") );
+			display.textContent = (expression.to_s());
+		});
 	});
 	//End of Sam's contributions
 
@@ -118,6 +130,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
 //Sam Cubberly
 function showEqual(val){
-	screen = document.getElementById("screen");
-	screen.innerText = expression.to_s() + " = " + val;
+	const display = document.querySelector('#screen p');
+	display.textContent = (expression.to_s()) + " = " + val;
 }

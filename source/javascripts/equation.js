@@ -50,11 +50,11 @@ Equation.prototype.to_s = function() {
   Equation.prototype.computeTop = function() {
 	arr = this.equation.slice();
 	//Add function to get rid of integers and floats
-  	parseNumbers(arr)
-
+  	arr = parseNumbers(arr)
+	console.log(arr);
 	//Function to get rid of functions
 	removeFuncs(arr);
-
+	console.log(arr);
 	//Complete PEMDAS
 	this.equals = compute(arr);
 }
@@ -204,8 +204,6 @@ function parseNumbers(arr) {
   if (buffer) {
     result.push(parseFloat(buffer));
   }
-  console.log(result);
-  return result;
+	return result;
 }
 
-console.log(parseNumbers([]))
