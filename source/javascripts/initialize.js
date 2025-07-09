@@ -2,7 +2,7 @@
 //Merges all of the classes
 
 equ = new Equation();
-equ.equation = [  1 , "+" , 2 , "*" , 3, "(" ]
+equ.equation = [power, "[", 2, ",", 5, "]"];
 
 //mem = new Memory();
 
