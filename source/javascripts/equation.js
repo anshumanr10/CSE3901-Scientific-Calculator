@@ -50,7 +50,7 @@ function Equation() {
   Equation.prototype.computeTop = function() {
 	arr = this.equation.slice();
 	//Add function to get rid of integers and floats
-  parseNumbers(arr)
+  	parseNumbers(arr)
 
 	//Function to get rid of functions
 	removeFuncs(arr);

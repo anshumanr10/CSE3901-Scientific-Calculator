@@ -6,8 +6,7 @@
 let equ = new Equation();
 
 //testing
-equ.equation = [log10,"[",power,"[",10,"+",10,",",2,"]","]"
-];
+equ.equation = [squared,"[",power,"[",10,"+",10,",",2,"]","]"];
 
 
 //mem = new Memory();
@@ -28,6 +27,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			showEqual(equ.equals);  //test
 			}
 		}catch(err){
+			alert(err.message);
 			alert("Syntax Error!");
 		}
 	});
