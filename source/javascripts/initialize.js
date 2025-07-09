@@ -1,8 +1,13 @@
 //Created Sam Cubberly 7 / 8
 //Merges all of the classes
+//Created Oliver Shen 7 / 9
+//merged the function button interact to here from funcs.js
 
-equ = new Equation();
+let equ = new Equation();
+
+//testing
 equ.equation = [power, "[", 2, ",", 5, "]"];
+
 
 //mem = new Memory();
 
@@ -37,6 +42,24 @@ document.addEventListener("DOMContentLoaded", function() {
 	});
 	//End of Sam's contributions
 
+	//Added by Oliver Shen 7/9 
+	//merged the function button interact to here from funcs.js
+	const display = document.querySelector('#screen p');
+    const funcButtons = document.querySelectorAll("button.function");
+    funcButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+            const value = button.getAttribute("data-value");
+            if (funcMap[value]) {
+                equ.add_op(funcMap[value]);
+                equ.add_op("[");
+            } else if (value === ",") {
+                equ.add_op(",");
+            } else {
+                equ.add_op(value);
+            }
+            updateTheDisplay();
+        });
+    });
 });
 
 //Yunfeng Wang
