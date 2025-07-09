@@ -5,34 +5,82 @@
 
 //Edited Oliver Shen 7/4 - Added more statements in the compute function temporary
 
-class Equation {
-  constructor() {
-    this.equation = [];
-  }
+function Equation() {
+	this.equation = [];
+}
 
   // Author Yunfeng Wang 7/2/2025
   // Add any object (number, operator, function) to the equation array
-  add_op(obj) {
+  Equation.prototype.add_op = function(obj) {
     this.equation.push(obj);
   }
 
   //Authro Yunfeng Wang 7/2/2025
   // Remove last element, which is used for backspace
-  rem_op() {
+  Equation.prototype.rem_op = function() {
     this.equation.pop();
   }
 
   //Author Yunfeng Wang 7/2/2025
   // Convert the array into a display string
   // edit Yunfeng Wang, remove space between elements.
-  to_s() {
+  Equation.prototype.to_s = function() {
     return this.equation.join("");
   }
+
+  Equation.prototype.computeTop = function() {
+	arr = this.equation.slice();
+	//Add function to get rid of integers and floats
+	//Function to get rid of functions
+	removeFuncs(arr);
+
+	//Complete PEMDAS
+	return compute(arr);
+  }
+
+  function removeFuncs(arr){
+    while( arr.indexOf("[") != -1 ){
+      indexes = innerBracket(arr);
+        if( indexes[1] < indexes[2] && indexes[1] > indexes[0] ){
+          rightEquation = compute(arr.slice(indexes[1] + 1, indexes[2]));
+          leftEquation =  compute(arr.slice(indexes[0] + 1, indexes[1]));
+          funcVal = arr[indexes[0] - 1](leftEquation, rightEquation);
+          arr.splice( indexes[0] - 1, indexes[2] - indexes[0] + 2, funcVal );
+        }else{
+          equation = compute(arr.slice(indexes[0] + 1, indexes[2]));
+          funcVal = arr[indexes[0] -1](equation);
+          console.log(arr);
+          console.log(indexes);
+          arr.splice(indexes[0]-1, indexes[2] - indexes[0] + 2, funcVal);
+          console.log(arr);
+        }
+    }
+    return arr;
+  }
+
+  function innerBracket(arr){
+    leftIndex = -1;
+    comma = -1;
+        parList = new Array(arr.length);
+      for( i = 0 ; i < arr.length ; i++ ){
+        switch(arr[i]){
+          case "[":
+            leftIndex = i;
+            break;
+          case ",":
+            comma = i;
+            break;
+          case "]":
+            return [leftIndex, comma , i];
+        }
+      }
+      return -1;
+    }
 
   //Author Sam Cubberly 7/3/2025
   //@edited Anshuman Ranjan: removed "function" token from beginning of function definition
   //Compute the equation and return a float equivalent to the equation
-  compute(arr){
+  function compute(arr){
     if( arr.length == 1 ){
       return arr[0];
     }
@@ -84,7 +132,7 @@ class Equation {
   //@edited Anshuman Ranjan: removed "function" token from beginning of function definition
   //Find the inner most set of parenthesis, and then returns the indices of the open and closed
   //parenthesis as [ open , closed ]
-  innerPar(arr){
+  function innerPar(arr){
     leftIndex = 0;
     parList = new Array(arr.length);
     for( i = 0 ; i < arr.length ; i++ ){
@@ -101,9 +149,6 @@ class Equation {
   //@author Anshuman Ranjan
   //@created 7/4/25
   //@description parse the array to find consecutive numbers w/ decimals and negators to create a float value
-  
-
-}
 
 
 // Author Yunfeng Wang 7/2/2025
@@ -230,4 +275,5 @@ function findMatchingBracket(arr, openIdx) {
     }
     return -1;
 }
+
 }
