@@ -20,11 +20,11 @@ document.addEventListener("DOMContentLoaded", function() {
 	//Sam's Contributions -- Please don't alter or delete without getting my permission
 	document.getElementById("equalButton").addEventListener("click", function() {
 		try{
-        		val = equ.computeTop()
-			if( isNaN(val) ){
+        		equ.computeTop()
+			if( isNaN(equ.equals) ){
 				alert("Syntax Error!");
 			}else{
-			showEqual(val);  //test
+			showEqual(equ.equals);  //test
 			}
 		}catch(err){
 			alert("Syntax Error!");

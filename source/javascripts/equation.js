@@ -5,8 +5,10 @@
 
 //Edited Oliver Shen 7/4 - Added more statements in the compute function temporary
 
+//Edited Sam Cubberly 7/9 added the equals value
 function Equation() {
 	this.equation = [];
+	this.equals = 0;
 }
 
   // Author Yunfeng Wang 7/2/2025
@@ -24,18 +26,35 @@ function Equation() {
   //Author Yunfeng Wang 7/2/2025
   // Convert the array into a display string
   // edit Yunfeng Wang, remove space between elements.
+  //Changed Sam Cubberly 7/9/2025
+  //
   Equation.prototype.to_s = function() {
-    return this.equation.join("");
+   arrCopy = this.equation.slice(); 
+   for(i=0; i < this.equation.length; i++){
+	if( (typeof this.equation[i]) == "function" ){
+		arrCopy[i] = this.equation[i].name
+	}else{
+		arrCopy[i] = this.equation[i]
+	}
+    }
+    return arrCopy.join("");
   }
 
+  //Author Sam Cubberly 7/8/2025
+  //Utilizes this.equation  array with:
+  //	functions as obj func ==> [ sqrt , "[" , arg1 , "," , arg2 , "]" ]
+  //	integers as multiple integers ==> [ 8 , 2 ] = 82
+  //	floats as multiple integers separated by a period ==> [ 1 , "." , 3 ] = 1.3
+  //Change the value of this.equals
   Equation.prototype.computeTop = function() {
 	arr = this.equation.slice();
 	//Add function to get rid of integers and floats
+
 	//Function to get rid of functions
 	removeFuncs(arr);
 
 	//Complete PEMDAS
-	return compute(arr);
+	this.equals = compute(arr);
   }
 
   function removeFuncs(arr){
