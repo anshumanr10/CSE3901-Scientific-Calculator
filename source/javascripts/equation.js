@@ -3,7 +3,7 @@
 
 //Edited Sam Cubberly 7/3 - Added the compute function and the innerPar function
 
-//Edited Oliver Shen 7/4 - Added more statements in the compute function temporary
+//Edited Oliver Shen 7/9 - Edited the to_s to returns a math expression string for display.
 
 //Edited Sam Cubberly 7/9 added the equals value
 function Equation() {
@@ -26,18 +26,19 @@ function Equation() {
   //Author Yunfeng Wang 7/2/2025
   // Convert the array into a display string
   // edit Yunfeng Wang, remove space between elements.
-  //Changed Sam Cubberly 7/9/2025
-  //
+  // edit Oliver Shen 7/9/2025
+  // Returns a math expression string for display.
+  // Maps functions to symbols, formats commas and brackets.
   Equation.prototype.to_s = function() {
-   arrCopy = this.equation.slice(); 
-   for(i=0; i < this.equation.length; i++){
-	if( (typeof this.equation[i]) == "function" ){
-		arrCopy[i] = this.equation[i].name
-	}else{
-		arrCopy[i] = this.equation[i]
-	}
-    }
-    return arrCopy.join("");
+    return this.equation.map(token => {
+        if (typeof token === "function") return funcDisplayName.get(token) || "fn";
+        if (token === ",") return ", ";
+        return token;
+    }).join(" ")
+      .replace(/\s+,/g, ",")
+      .replace(/,\s+/g, ", ")
+      .replace(/\s+\]/g, "]")
+      .replace(/\[\s+/g, "[");
   }
 
   //Author Sam Cubberly 7/8/2025

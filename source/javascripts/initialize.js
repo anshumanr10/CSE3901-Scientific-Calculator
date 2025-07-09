@@ -6,7 +6,8 @@
 let equ = new Equation();
 
 //testing
-equ.equation = [power, "[", 2, ",", 5, "]"];
+equ.equation = [log10,"[",power,"[",10,"+",10,",",2,"]","]"
+];
 
 
 //mem = new Memory();
