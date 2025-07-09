@@ -3,7 +3,6 @@
 #description List containing all the CSS stylesheets for the project to be imported
 
 index.css: stylesheets/index.css
-style.css: stylesheets/style.css
 maingridCalls.css: stylesheets/maingridCalls.css
 
 #Imported fonts

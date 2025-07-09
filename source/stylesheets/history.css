@@ -1,0 +1,15 @@
+/* @author Anshuman Ranjan
+   @created 7/9/25
+   @description Contains CSS code for the history container, specifically the buttons that are dynamically generated
+*/
+
+.history-entry {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.history-entry button {
+  padding: 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
