@@ -3,43 +3,79 @@
 //Created Oliver Shen 7 / 9
 //merged the function and opertaion(+ - * /) button interact to here 
 
-let equ = new Equation();
-
-//testing
-equ.equation = [log10,"[",power,"[",10,"+",10,",",2,"]","]"
-];
-
-
-//mem = new Memory();
-
-//his = new History();
+//@author Anshuman Ranjan
+//@created 7/9/25
+//@description Gets all the buttons on the screen to update the display
+const expression = new Equation();
 
 document.addEventListener("DOMContentLoaded", function() {
+	
+	//display component: CALLED BY ALL TEAM MEMBER'S CODE
+	const display = document.querySelector('#screen p');
 
-	updateTheDisplay();
+    //Create components for all the number buttons, decimal button, and negator button.
+	//@uses handleButtonClick function when the button is clicked
+    const numButtons = document.querySelectorAll("button.number, button.negator, button.decimal, button.clear");
+    numButtons.forEach( (button) => {button.addEventListener("click", () => handleButtonClick(button))})
+
+    function handleButtonClick(button) {
+        const value = button.getAttribute("data-value");
+        const button_class = button.getAttribute("class");
+        console.log("You Clicked a button!")
+                
+        //All cases simply add the value to the expression and update display, will modify if needed
+        switch (button_class) {
+            case "number":
+                console.log("Entered the number statement");
+                expression.add_op(value)
+                display.textContent = (expression.to_s())
+                break;
+            case "negator":
+                console.log("Entered the negator statement");
+                expression.add_op(value)
+                display.textContent = (expression.to_s())
+                break;
+            case "decimal":
+                console.log("Entered the decimal statement");
+                expression.add_op(value)
+                display.textContent = (expression.to_s())
+                break;
+            case "clear":
+                console.log("Entered the clear statement");
+                while (expression.to_s().length > 0) {
+                    console.log(expression.to_s().length);
+                    expression.rem_op();
+                }
+                display.textContent = (expression.to_s())
+                break;
+            default:
+                console.log("INVALID BUTTON PRESSED, NO CHANGE TO DISPLAY");
+        }
+    }
 
 	//Sam's Contributions -- Please don't alter or delete without getting my permission
 	document.getElementById("equalButton").addEventListener("click", function() {
 		try{
-        		equ.computeTop()
-			if( isNaN(equ.equals) ){
+        		expression.computeTop()
+			if( isNaN(expression.equals) ){
 				alert("Syntax Error!");
 			}else{
-			showEqual(equ.equals);  //test
+			showEqual(expression.equals);  //test
 			}
 		}catch(err){
 			alert("Syntax Error!");
+			alert(err.message);
 		}
 	});
 
 	document.getElementById("clearButton").addEventListener("click", function() {
-		equ.equation = [];
-		updateTheDisplay();
+		expression.equation = [];
+		display.textContent = (expression.to_s());
         });
 
 	document.getElementById("deleteButton").addEventListener("click", function(){
-		equ.rem_op();
-		updateTheDisplay();
+		expression.rem_op();
+		display.textContent = (expression.to_s());
 	});
 
 	document.getElementById("menuButton").addEventListener("click", function(){
@@ -54,20 +90,19 @@ document.addEventListener("DOMContentLoaded", function() {
 
 	//Added by Oliver Shen 7/9 
 	//merged the function button interact to here from funcs.js
-	const display = document.querySelector('#screen p');
     const funcButtons = document.querySelectorAll("button.function");
     funcButtons.forEach((button) => {
         button.addEventListener("click", () => {
             const value = button.getAttribute("data-value");
             if (funcMap[value]) {
-                equ.add_op(funcMap[value]);
-                equ.add_op("[");
+                expression.add_op(funcMap[value]);
+                expression.add_op("[");
             } else if (value === ",") {
-                equ.add_op(",");
+                expression.add_op(",");
             } else {
-                equ.add_op(value);
+                expression.add_op(value);
             }
-            updateTheDisplay();
+            display.textContent = (expression.to_s());
         });
     });
 
@@ -77,20 +112,14 @@ document.addEventListener("DOMContentLoaded", function() {
     opsButtons.forEach((button) => {
         button.addEventListener("click", () => {
             const value = button.getAttribute("data-value");
-            equ.add_op(value);        
-            updateTheDisplay();
+            expression.add_op(value);        
+            display.textContent = (expression.to_s());
         });
     });
 });
 
-//Yunfeng Wang
-function updateTheDisplay(){
-	const screen = document.getElementById("screen");
-	screen.innerText = equ.to_s();
-}
-
 //Sam Cubberly
 function showEqual(val){
 	screen = document.getElementById("screen");
-	screen.innerText = equ.to_s() + " = " + val;
+	screen.innerText = expression.to_s() + " = " + val;
 }
