@@ -8,10 +8,11 @@
 const history = [];
 
 // modifies the global-level history array to include an equation instance that was evaluted by the app.
-function addToHistory(eq) {
+function addToHistory(expression) {
 
-    history.push(eq);
+    history.push(expression);
     const historyDiv = document.getElementById("history");
+    const display = document.querySelector('#screen p');
 
     // Create a container for the button pair
     const entryDiv = document.createElement("div");
@@ -19,22 +20,17 @@ function addToHistory(eq) {
 
     // --- Button 1: Show Equation ---
     const equationButton = document.createElement("button");
-    equationButton.innerText = eq.to_s(); // Label = "3 + 5", for example
+    equationButton.innerText = expression.to_s(); // Label = "3 + 5", for example
     equationButton.addEventListener("click", () => {
-        alert("Equation: " + eq.to_s()); //JUST FOR TESTING --------------------DELETE
+        display.textContent = (expression.to_s())
     });
 
     // --- Button 2: Show Result ---
     const resultButton = document.createElement("button");
-    resultButton.innerText = eq.equals; // Label = "8", for example
+    resultButton.innerText = expression.equals; // Label = "8", for example
     resultButton.addEventListener("click", () => {
-    alert("Result: " + eq.equals); //JUST FOR TESTING --------------------DELETE
+        display.textContent = (expression.to_s())
     });
-
-    // Optional: style buttons and container
-    equationButton.style.margin = "4px";
-    resultButton.style.margin = "4px";
-    entryDiv.style.marginBottom = "8px";
 
     // Add both buttons to the entry container
     entryDiv.appendChild(equationButton);
