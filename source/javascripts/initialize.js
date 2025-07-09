@@ -2,7 +2,7 @@
 //Merges all of the classes
 //Created Oliver Shen 7 / 9
 //merged the function and opertaion(+ - * /) button interact to here 
-
+//merge function from interaction.js here by Yunfeng Wang 7/9/2025
 const expression = new Equation();
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -133,3 +133,48 @@ function showEqual(val){
 	const display = document.querySelector('#screen p');
 	display.textContent = (expression.to_s()) + " = " + val;
 }
+
+//Yunfeng Wang 7/9/2025
+//Merged from interaction.js
+// Update the calculator's display screen with the current equation.
+// Falls back to showing the current tokens if no override text is provided.
+function updateDisplay() {
+    const screen = document.getElementById("screen");
+    if (screen) {
+        screen.innerText = expression.to_s();
+    }
+}
+
+// Show the memory panel and hide the history panel, typically triggered by the "Memory" button.
+function showMemory() {
+    const memory = document.getElementById("memory");
+    const history = document.getElementById("history");
+    if (memory && history) {
+        memory.classList.remove("hidden");
+        history.classList.add("hidden");
+    }
+}
+
+// Show the history panel and hide the memory panel, typically triggered by the "History" button.
+function showHistory() {
+    const memory = document.getElementById("memory");
+    const history = document.getElementById("history");
+    if (memory && history) {
+        memory.classList.add("hidden");
+        history.classList.remove("hidden");
+    }
+}
+
+// Optional: Toggle collapsed/expanded for any panel with a toggle tab
+function toggleSidePanel() {
+    const panel = document.getElementById("side-panel");
+    const tab = panel.querySelector(".toggle-tab");
+    panel.classList.toggle("collapsed");
+    tab.textContent = panel.classList.contains("collapsed") ? "▶" : "◀";
+}
+
+// Expose toggle functions globally if needed (for inline onclick="")
+window.showMemory = showMemory;
+window.showHistory = showHistory;
+
+//End of Yunfeng Wang's part
