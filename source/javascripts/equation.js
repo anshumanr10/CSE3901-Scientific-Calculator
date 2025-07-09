@@ -50,6 +50,7 @@ function Equation() {
   Equation.prototype.computeTop = function() {
 	arr = this.equation.slice();
 	//Add function to get rid of integers and floats
+  parseNumbers(arr)
 
 	//Function to get rid of functions
 	removeFuncs(arr);
@@ -169,5 +170,31 @@ function Equation() {
   //@author Anshuman Ranjan
   //@created 7/4/25
   //@description parse the array to find consecutive numbers w/ decimals and negators to create a float value
+  function parseNumbers(arr) {
+    const result = [];
+    let buffer = "";
 
+    arr.reduce((accumulator, token, i) => {
+      const prev = arr[i-1] || null;
+
+      if ( (token === "-") && (i === 0 || ["+", "-", "*", "/", "("].includes(prev)) && /^[0-9]$/.test(arr[i + 1]) ) {
+        buffer = "-";
+        return accumulator;
+      }
+
+      if ( (/^[0-9]$/.test(token)) || (token === ".") ) {
+        buffer += token;
+      } else {
+        if (buffer) {
+          acc.push(parseFloat(buffer));
+          buffer = "";
+        }
+        acc.push(token);
+      }
+
+      if (i === arr.length - 1 && buffer) {
+        acc.push(parseFloat(buffer));
+      }
+    })
+  }
 
