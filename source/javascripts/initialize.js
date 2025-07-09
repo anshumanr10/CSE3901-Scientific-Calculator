@@ -1,7 +1,7 @@
 //Created Sam Cubberly 7 / 8
 //Merges all of the classes
 //Created Oliver Shen 7 / 9
-//merged the function button interact to here from funcs.js
+//merged the function and opertaion(+ - * /) button interact to here 
 
 let equ = new Equation();
 
@@ -67,6 +67,17 @@ document.addEventListener("DOMContentLoaded", function() {
             } else {
                 equ.add_op(value);
             }
+            updateTheDisplay();
+        });
+    });
+
+	//Added by Oliver Shen 7/9 
+	//Operator buttons (+ - * /) 
+    const opsButtons = document.querySelectorAll("button.operator");
+    opsButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+            const value = button.getAttribute("data-value");
+            equ.add_op(value);        
             updateTheDisplay();
         });
     });
