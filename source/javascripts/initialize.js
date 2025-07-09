@@ -41,6 +41,15 @@ document.addEventListener("DOMContentLoaded", function() {
 		equ.rem_op();
 		updateTheDisplay();
 	});
+
+	document.getElementById("menuButton").addEventListener("click", function(){
+		menuText = document.getElementsByClassName("syntaxmenu")[0];
+		if( menuText.classList.contains("hiddenMenu") ){
+			menuText.classList.remove("hiddenMenu");
+		}else{
+			menuText.classList.add("hiddenMenu");
+		}
+	});
 	//End of Sam's contributions
 
 	//Added by Oliver Shen 7/9 
