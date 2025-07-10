@@ -124,9 +124,9 @@ body {
 
 #side-panel {
   position: fixed;
-  top: 80px;
+  top: 5px;
   right: 0;
-  height: 900px; 
+  height: 1000px; 
   width: 15vw;
   background-color: #ffffff;
   display: flex;
