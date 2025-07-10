@@ -126,14 +126,13 @@ body {
   position: fixed;
   top: 80px;
   right: 0;
-  height: 600px; 
-  width: 200px;
-  background-color: #2d2d30;
-  border-left: 2px solid #333;
+  height: 900px; 
+  width: 350px;
+  background-color: #ffffff;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  padding: 10px;
+  padding: 8px;
   overflow-y: auto;
   z-index: 10;
 }
@@ -179,10 +178,22 @@ body {
 .history-entry {
   display: flex;
   justify-content: space-between;
-  background-color: #2d2d2d;
+  align-items: center;
+  gap: 10px; 
+  background-color: #d2d2d2;
   border-radius: 5px;
   padding: 5px 10px;
   margin-bottom: 6px;
+  white-space: nowrap;        
+  overflow: hidden;           
+}
+
+.history-entry button {
+  flex-shrink: 1;             
+  max-width: 45%;             
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .hidden {
