@@ -189,41 +189,27 @@ memoryButtons.forEach((button) => {
   button.addEventListener("click", () => {
     const exprStr = expression.to_s();
     expression.computeTop(); // upadte expression value
+    addToHistory(expression);
     const equalsStr = expression.equals; // current value
     const currentVal = parseFloat(equalsStr);
 
     console.log(`Memory button clicked: ${action}, currentVal: ${currentVal}`);
     switch (action) {
-      case "MC":
-        memoryObj.clear_memory();
-        console.log("Memory saved as:", memoryObj.recover_memory());
-        document.getElementById("memory-display").textContent = "[empty]";
-        break;
-      case "MR":
-        display.textContent = memoryObj.recover_memory();
-        console.log("Memory saved as:", memoryObj.recover_memory());
-        document.getElementById("memory-display").textContent = memoryObj.recover_memory();
-        break;
-      case "M+":
-        memoryObj.add_memory(currentVal);
-
-        console.log("Memory saved as:", memoryObj.recover_memory());
-        document.getElementById("memory-display").textContent = memoryObj.recover_memory();
-        console.log("M+ clicked, val:", currentVal);
-        memoryObj.add_memory(currentVal);
-        console.log("Memory now:", memoryObj.recover_memory());
-        break;
-      case "M-":
-        memoryObj.subtract_memory(currentVal);
-        console.log("Memory saved as:", memoryObj.recover_memory());
-        document.getElementById("memory-display").textContent = memoryObj.recover_memory();
-        break;
-      case "MS":
-        memoryObj.save_memory(currentVal);
-        console.log("Memory saved as:", memoryObj.recover_memory());
-        document.getElementById("memory-display").textContent = memoryObj.recover_memory();
-        break;
-    }
+        case "MC":
+            memoryObj.clear_memory();
+            break;
+        case "MR":
+            break;
+        case "M+":
+            memoryObj.add_memory(currentVal);
+            break;
+        case "M-":
+            memoryObj.subtract_memory(currentVal);
+            break;
+        case "MS":
+            memoryObj.save_memory(currentVal);
+            break;
+        }
 
     // update display
     const memoryDisplay = document.getElementById("memory-display");
