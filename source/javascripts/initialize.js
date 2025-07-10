@@ -7,7 +7,12 @@ const expression = new Equation();
 
 document.addEventListener("DOMContentLoaded", function() {
 	
-	//display component: CALLED BY ALL TEAM MEMBER'S CODE
+	//@author Anshuman Ranjan
+    //@created 7/9/25
+    //@description Gets all the number buttons on the screen to update the display +
+    // gets history buttons to dynamically generate and store/recall values
+
+    //display component: CALLED BY ALL TEAM MEMBER'S CODE
 	const display = document.querySelector('#screen p');
 
     //Create components for all the number buttons, decimal button, and negator button.
@@ -49,6 +54,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 console.log("INVALID BUTTON PRESSED, NO CHANGE TO DISPLAY");
         }
     }
+    //End of Anshuman Ranjan Contributions ^^^^^^^^^^
 
 	//Sam's Contributions -- Please don't alter or delete without getting my permission
 	document.getElementById("equalButton").addEventListener("click", function() {
@@ -58,8 +64,10 @@ document.addEventListener("DOMContentLoaded", function() {
 				alert("Syntax Error!");
 			}else{
 			showEqual(expression.equals);  //test
+            //@author Anshuman Ranjan 7/9/25---------------------
             addToHistory(expression);
             activateHistoryButtons(display, expression);
+            //---------------------------------------------------
 			}
 		}catch(err){
 			alert(err.message);

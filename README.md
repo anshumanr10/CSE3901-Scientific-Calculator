@@ -124,6 +124,17 @@ Sam Cubberly:
 		- used hiddenMenu class to hide the menu when it was added
 	
 Anshuman Ranjan:  
+- Javascript:
+    - initialize.js: Created all the number buttons, and called the 2 functions defined in history.js
+    - history.js: defined 2 functions which dynamically generate and display buttons which store and recall equation objects
+    - equation.js: created the parseNumbers function which takes the user_inputted button values and parses them to find real numbers.
+        - utilized reduce, switch-case
+- HTML:
+    - numbers.erb: partial that contains all the button tags for the number keypad on the calc
+    - index.html.erb: partial that contains all the main containers for the calculator layout. ID-attributes used to design the layout of the containers.
+- CSS:
+    - index.css: generated all the CSS code for the overall layout of the calculator
+        - specifically targetted all the buttons, the screen, and the containers that are used to layout all the calc components in a vertical manner
 
 Oliver Shen:  
 - Equation.js
