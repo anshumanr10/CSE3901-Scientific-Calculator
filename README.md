@@ -127,8 +127,12 @@ Anshuman Ranjan:
 - Javascript:
     - initialize.js: Created all the number buttons, and called the 2 functions defined in history.js
     - history.js: defined 2 functions which dynamically generate and display buttons which store and recall equation objects
+        - Dynamically generated tags and assigned them attributes, values, and attached JS objects to each button object.
+        - Generated a new equation object for each button to prevent aliasing (.split())
+        - Activated each button using foreach and finding all buttons with the hist_equation/hist_result atttribute
     - equation.js: created the parseNumbers function which takes the user_inputted button values and parses them to find real numbers.
         - utilized reduce, switch-case
+        - used a lot of String methods to parse the values
 - HTML:
     - numbers.erb: partial that contains all the button tags for the number keypad on the calc
     - index.html.erb: partial that contains all the main containers for the calculator layout. ID-attributes used to design the layout of the containers.
