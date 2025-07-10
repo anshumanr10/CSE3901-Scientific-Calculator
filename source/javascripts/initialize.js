@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     console.log(expression.to_s().length);
                     expression.rem_op();
                 }
-                display.textContent = (expression.to_s())
+                display.textContent = (0)
                 break;
             default:
                 console.log("INVALID BUTTON PRESSED, NO CHANGE TO DISPLAY");
@@ -58,6 +58,8 @@ document.addEventListener("DOMContentLoaded", function() {
 				alert("Syntax Error!");
 			}else{
 			showEqual(expression.equals);  //test
+            addToHistory(expression);
+            activateHistoryButtons(display, expression);
 			}
 		}catch(err){
 			alert(err.message);
