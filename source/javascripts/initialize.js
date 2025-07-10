@@ -193,22 +193,27 @@ memoryButtons.forEach((button) => {
       case "MC":
         memoryObj.clear_memory();
         console.log("Memory saved as:", memoryObj.recover_memory());
+        document.getElementById("memory-display").textContent = "[empty]";
         break;
       case "MR":
         display.textContent = memoryObj.recover_memory();
         console.log("Memory saved as:", memoryObj.recover_memory());
+        document.getElementById("memory-display").textContent = memoryObj.recover_memory();
         break;
       case "M+":
         memoryObj.add_memory(currentVal);
         console.log("Memory saved as:", memoryObj.recover_memory());
+        document.getElementById("memory-display").textContent = memoryObj.recover_memory();
         break;
       case "M-":
         memoryObj.subtract_memory(currentVal);
         console.log("Memory saved as:", memoryObj.recover_memory());
+        document.getElementById("memory-display").textContent = memoryObj.recover_memory();
         break;
       case "MS":
         memoryObj.save_memory(currentVal);
         console.log("Memory saved as:", memoryObj.recover_memory());
+        document.getElementById("memory-display").textContent = memoryObj.recover_memory();
         break;
     }
 
