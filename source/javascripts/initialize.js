@@ -187,7 +187,11 @@ const memoryObj = new Memory();
 memoryButtons.forEach((button) => {
   const action = button.getAttribute("data-action");
   button.addEventListener("click", () => {
-    const currentVal = expression.to_s();
+    const exprStr = expression.to_s();
+    expression.computeTop(); // upadte expression value
+    const equalsStr = expression.equals; // current value
+    const currentVal = parseFloat(equalsStr);
+
     console.log(`Memory button clicked: ${action}, currentVal: ${currentVal}`);
     switch (action) {
       case "MC":
@@ -202,8 +206,12 @@ memoryButtons.forEach((button) => {
         break;
       case "M+":
         memoryObj.add_memory(currentVal);
+
         console.log("Memory saved as:", memoryObj.recover_memory());
         document.getElementById("memory-display").textContent = memoryObj.recover_memory();
+        console.log("M+ clicked, val:", currentVal);
+        memoryObj.add_memory(currentVal);
+        console.log("Memory now:", memoryObj.recover_memory());
         break;
       case "M-":
         memoryObj.subtract_memory(currentVal);
