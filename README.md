@@ -1,7 +1,7 @@
 # Project-5-MasterRubyInsane
 
 # Description
-Design a web page that looks and behaves like a classic calculator.  
+Design a web page that looks and behaves like a scientific calculator.  
 
 # Managers
 Overall project manager: Sam Cubberly  
@@ -11,7 +11,7 @@ Meeting manager: Oliver Shen
 - [Basic] Entering Numbers  
     - The user clicks on the number buttons (0-9)  
     - Digits added to equation  
-[Basic] Entering Basic Operations and Functions  
+- [Basic] Entering Basic Operations and Functions  
     - The user clicks a number, an operator (+, -, *, /), another number  
     - The user clicks a function  
         - Square root, exponentiation  
@@ -28,10 +28,6 @@ Meeting manager: Oliver Shen
 - [Basic] Clearing Input or memory
     - The user clicks the "C" button to clear the current input and display.
     - The user clicks the "MC" button to clear the value stored in memory.
-- [Basic] Backspace
-    - Allows to remove one character from the display / equation string
-- [Optional] Mode switching (e.g., hexadecimal, binary, decimal)
-    - Allows to see the value in different modes
 
 # Meeting Reports
 **Meeting 1: 7/1**
@@ -76,8 +72,57 @@ Meeting manager: Oliver Shen
     - Redesign the display of History and Memory window, make them have separate banners.
 
 # Contributions
-Sam Cubberly:  
-
+Sam Cubberly:
+- JavaScript  
+	- Equation.js
+		- added a variable to the Equation prototype
+		- ComputeTop function
+			- computes entire equation, equation prototype function, sets object variables
+		- removeFuncs function
+			- removes functions in the array
+			- arr.indexOf(), arr.slice(), arr.splice()
+			- while loop, if-else bock
+		- innerBracket function
+			- finds innermost functions in equation
+			- for loop, switch statements
+		- compute function
+			- computes PEMDAS in the function
+			- recursion, splice, indexOf, Boolean operators
+		- innerPar function
+			- returns the innermost parentheses' indexes in the equation
+	- Initialize.js
+		- initialized
+			- created instance of Equation
+			- added eventListener for "DOMContentLoaded" to load after all DOM loaded, so all buttons can have a valid target
+		- buttons
+			- equal button
+				- computes the equation and outputs
+				- document.getElementById, addeventListener, try, catch, alert
+			- clear, delete buttons
+				- clears, or removes from the equation, respectfully
+				- getElementById, called expression object
+			- menu button
+				- hides or shows the menu on the right
+				- used getElementsByClassName, used classList.contains and classList.remove
+			- parentheses buttons
+				- displays parenthesis on the screen
+				- querySelectorAll ==> to get all parenthesis, used getAttribute("data-value") to get either ( or )
+			- showEqual
+				- shows {expr} = value on screen
+				- querySelector and string concatenation
+- Html
+	- _mainCalls.erb
+		- Added the equal, clear, delete, and menu buttons
+	- _menu.erb
+		- created a class with default display as hidden
+		- contains explanations for syntax writing in the project
+	- numbers.erb
+		- added the open and closing parentheses
+- CSS
+	- menu.css
+		- margin: auto and width: 50% to get the menu centered
+		- used hiddenMenu class to hide the menu when it was added
+	
 Anshuman Ranjan:  
 
 Oliver Shen:  
@@ -95,6 +140,30 @@ Oliver Shen:
     - All used class="operator" to make sure they have the same way to display  
 
 Yunfeng Wang:  
+- Equation.js
+    - @add-op(obj) add any object including number, operator, function to the equation array
+    - @rem_op() that remove last element, which is used for backspace
+    - @to_s() convert the array into a display string
+- func.js 
+    - @squareRoot(num) Calculates the exponent-th root of num
+    - @squared(num) Calculates the square of a number
+- initialize.js
+    - merged from interactions.js
+    - @updateDisplay(), @showMemory(), @showHistory
+    - memory eventListener and memory buttons handling expressions.
+- memory.js
+    - A memory storage object used in the calculator.
+    - It holds a single float value in memory and provides methods to save, retrieve, add to, subtract from, and clear the memory.
+    - Used in conjunction with memory control buttons: M+, M-, MR, MC, MS
+    - @save_memory, @recover_memory, @add_memory, @subtract_memory, @clear_memory
+- layout.erb
+    - set the basic structure
+- screen_grid.erb
+    - generates the memory-history and screen
+    - calculator-wrapper includes screen and Side panel
+    - side-panel includes memory and history
+- index.css
+    - create the side panel style  and history, memory display style.
 
 
 
@@ -157,7 +226,7 @@ Yunfeng Wang:
             - (sam’s version) give user an index option of which history to add to - equation
             - clear_history()
     - History and Memory are separate banners - **Yunfeng Wang**
-        - One or none shows up, not both
+
 
 
 

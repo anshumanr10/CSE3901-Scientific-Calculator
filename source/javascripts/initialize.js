@@ -64,24 +64,22 @@ document.addEventListener("DOMContentLoaded", function() {
 		}catch(err){
 			alert(err.message);
 			alert("Syntax Error!");
-			alert(err.message);
 		}
 	});
 
+	//event - hitting the clear button ==> clear the equation
 	document.getElementById("clearButton").addEventListener("click", function() {
 		expression.equation = [];
-		console.log("clear button");
-		console.log(expression.equation);
 		display.textContent = (expression.to_s());
         });
 
+	//event - hitting the delete button ==> remove one obj from the equation
 	document.getElementById("deleteButton").addEventListener("click", function(){
 		expression.rem_op();
-		console.log("delete button");
-                console.log(expression.equation);
 		display.textContent = (expression.to_s());
 	});
 
+	//event - hitting the menu button ==> will show the menu or hide the menu
 	document.getElementById("menuButton").addEventListener("click", function(){
 		menuText = document.getElementsByClassName("syntaxmenu")[0];
 		if( menuText.classList.contains("hiddenMenu") ){
@@ -91,6 +89,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		}
 	});
 
+	//event - hitting either parenthesis ==> showing up on the screen
 	parenthesisFunction = document.querySelectorAll("button.parenthesis");
 	parenthesisFunction.forEach((parenthesis) => {
 		parenthesis.addEventListener("click", function(){
@@ -131,6 +130,8 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 //Sam Cubberly
+// Shows the equation as a string on screen
+//	Appends "= value" to screen
 function showEqual(val){
 	const display = document.querySelector('#screen p');
 	display.textContent = (expression.to_s()) + " = " + val;
@@ -138,8 +139,6 @@ function showEqual(val){
 
 //Yunfeng Wang 7/9/2025
 //Merged from interaction.js
-// Update the calculator's display screen with the current equation.
-// Falls back to showing the current tokens if no override text is provided.
 function updateDisplay() {
     const screen = document.getElementById("screen");
     if (screen) {
@@ -191,7 +190,7 @@ memoryButtons.forEach((button) => {
   button.addEventListener("click", () => {
     const exprStr = expression.to_s();
     expression.computeTop(); // upadte expression value
-    addToHistory(expression);
+    addToHistory(expression); // MS add history record to the panel
     const equalsStr = expression.equals; // current value
     const currentVal = parseFloat(equalsStr);
 
