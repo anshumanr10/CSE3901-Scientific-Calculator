@@ -136,8 +136,6 @@ function showEqual(val){
 
 //Yunfeng Wang 7/9/2025
 //Merged from interaction.js
-// Update the calculator's display screen with the current equation.
-// Falls back to showing the current tokens if no override text is provided.
 function updateDisplay() {
     const screen = document.getElementById("screen");
     if (screen) {
@@ -189,7 +187,7 @@ memoryButtons.forEach((button) => {
   button.addEventListener("click", () => {
     const exprStr = expression.to_s();
     expression.computeTop(); // upadte expression value
-    addToHistory(expression);
+    addToHistory(expression); // MS add history record to the panel
     const equalsStr = expression.equals; // current value
     const currentVal = parseFloat(equalsStr);
 

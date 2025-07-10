@@ -95,6 +95,30 @@ Oliver Shen:
     - All used class="operator" to make sure they have the same way to display  
 
 Yunfeng Wang:  
+- Equation.js
+    - @add-op(obj) add any object including number, operator, function to the equation array
+    - @rem_op() that remove last element, which is used for backspace
+    - @to_s() convert the array into a display string
+- func.js 
+    - @squareRoot(num) Calculates the exponent-th root of num
+    - @squared(num) Calculates the square of a number
+- initialize.js
+    - merged from interactions.js
+    - @updateDisplay(), @showMemory(), @showHistory
+    - memory eventListener and memory buttons handling expressions.
+- memory.js
+    - A memory storage object used in the calculator.
+    - It holds a single float value in memory and provides methods to save, retrieve, add to, subtract from, and clear the memory.
+    - Used in conjunction with memory control buttons: M+, M-, MR, MC, MS
+    - @save_memory, @recover_memory, @add_memory, @subtract_memory, @clear_memory
+- layout.erb
+    - set the basic structure
+- screen_grid.erb
+    - generates the memory-history and screen
+    - calculator-wrapper includes screen and Side panel
+    - side-panel includes memory and history
+- index.css
+    - create the side panel style  and history, memory display style.
 
 
 
@@ -157,7 +181,7 @@ Yunfeng Wang:
             - (sam’s version) give user an index option of which history to add to - equation
             - clear_history()
     - History and Memory are separate banners - **Yunfeng Wang**
-        - One or none shows up, not both
+
 
 
 
