@@ -1,7 +1,7 @@
 # Project-5-MasterRubyInsane
 
 # Description
-Design a web page that looks and behaves like a classic calculator.  
+Design a web page that looks and behaves like a scientific calculator.  
 
 # Managers
 Overall project manager: Sam Cubberly  
@@ -11,7 +11,7 @@ Meeting manager: Oliver Shen
 - [Basic] Entering Numbers  
     - The user clicks on the number buttons (0-9)  
     - Digits added to equation  
-[Basic] Entering Basic Operations and Functions  
+- [Basic] Entering Basic Operations and Functions  
     - The user clicks a number, an operator (+, -, *, /), another number  
     - The user clicks a function  
         - Square root, exponentiation  
@@ -28,10 +28,6 @@ Meeting manager: Oliver Shen
 - [Basic] Clearing Input or memory
     - The user clicks the "C" button to clear the current input and display.
     - The user clicks the "MC" button to clear the value stored in memory.
-- [Basic] Backspace
-    - Allows to remove one character from the display / equation string
-- [Optional] Mode switching (e.g., hexadecimal, binary, decimal)
-    - Allows to see the value in different modes
 
 # Meeting Reports
 **Meeting 1: 7/1**
