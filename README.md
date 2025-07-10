@@ -76,8 +76,57 @@ Meeting manager: Oliver Shen
     - Redesign the display of History and Memory window, make them have separate banners.
 
 # Contributions
-Sam Cubberly:  
-
+Sam Cubberly:
+- JavaScript  
+	- Equation.js
+		- added a variable to the Equation prototype
+		- ComputeTop function
+			- computes entire equation, equation prototype function, sets object variables
+		- removeFuncs function
+			- removes functions in the array
+			- arr.indexOf(), arr.slice(), arr.splice()
+			- while loop, if-else bock
+		- innerBracket function
+			- finds innermost functions in equation
+			- for loop, switch statements
+		- compute function
+			- computes PEMDAS in the function
+			- recursion, splice, indexOf, Boolean operators
+		- innerPar function
+			- returns the innermost parentheses' indexes in the equation
+	- Initialize.js
+		- initialized
+			- created instance of Equation
+			- added eventListener for "DOMContentLoaded" to load after all DOM loaded, so all buttons can have a valid target
+		- buttons
+			- equal button
+				- computes the equation and outputs
+				- document.getElementById, addeventListener, try, catch, alert
+			- clear, delete buttons
+				- clears, or removes from the equation, respectfully
+				- getElementById, called expression object
+			- menu button
+				- hides or shows the menu on the right
+				- used getElementsByClassName, used classList.contains and classList.remove
+			- parentheses buttons
+				- displays parenthesis on the screen
+				- querySelectorAll ==> to get all parenthesis, used getAttribute("data-value") to get either ( or )
+			- showEqual
+				- shows {expr} = value on screen
+				- querySelector and string concatenation
+- Html
+	- _mainCalls.erb
+		- Added the equal, clear, delete, and menu buttons
+	- _menu.erb
+		- created a class with default display as hidden
+		- contains explanations for syntax writing in the project
+	- numbers.erb
+		- added the open and closing parentheses
+- CSS
+	- menu.css
+		- margin: auto and width: 50% to get the menu centered
+		- used hiddenMenu class to hide the menu when it was added
+	
 Anshuman Ranjan:  
 
 Oliver Shen:  

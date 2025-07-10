@@ -46,43 +46,51 @@ Equation.prototype.to_s = function() {
   //	functions as obj func ==> [ sqrt , "[" , arg1 , "," , arg2 , "]" ]
   //	integers as multiple integers ==> [ 8 , 2 ] = 82
   //	floats as multiple integers separated by a period ==> [ 1 , "." , 3 ] = 1.3
-  //Change the value of this.equals
+  //Change the value of this.equals to the computed value of the equation
+  //this.equation doesn't change
   Equation.prototype.computeTop = function() {
 	arr = this.equation.slice();
 	//Add function to get rid of integers and floats
   	arr = parseNumbers(arr)
-	console.log(arr);
 	//Function to get rid of functions
 	removeFuncs(arr);
-	console.log(arr);
 	//Complete PEMDAS
 	this.equals = compute(arr);
 }
 
+//Author Sam Cubberly 7/9/2025
+//Removes functions from the arr
+//	Requires that functions are in the form: 
+//	[ ... , func , "[" , {expr} , "]" , ... ] 
+//	Or [ ... , func , "[" , {expr} , "," , {expr} , "]" , ... ] 
+//Returns arr as
+//	 [ ... , {valueOfFunc} , ... ]
 function removeFuncs(arr){
+  //Left bracket indicates a function is 1 index before it
   while( arr.indexOf("[") != -1 ){
-    indexes = innerBracket(arr);
-      if( indexes[1] < indexes[2] && indexes[1] > indexes[0] ){
+    indexes = innerBracket(arr); // ==> returns [ leftBracketIndex , commaIndex , rightBracketIndex ]
+      if( indexes[1] < indexes[2] && indexes[1] > indexes[0] ){ // ==>  comma between brackets means 2 args
         rightEquation = compute(arr.slice(indexes[1] + 1, indexes[2]));
         leftEquation =  compute(arr.slice(indexes[0] + 1, indexes[1]));
         funcVal = arr[indexes[0] - 1](leftEquation, rightEquation);
         arr.splice( indexes[0] - 1, indexes[2] - indexes[0] + 2, funcVal );
-      }else{
+      }else{ // ==> 1 arg
         equation = compute(arr.slice(indexes[0] + 1, indexes[2]));
         funcVal = arr[indexes[0] -1](equation);
-        console.log(arr);
-        console.log(indexes);
         arr.splice(indexes[0]-1, indexes[2] - indexes[0] + 2, funcVal);
-        console.log(arr);
       }
   }
   return arr;
 }
 
+//Author Sam Cubberly 7/9/2025
+//Finds the innermost set of brackets, finding the innermost functino
+//	returns [ leftBracketIndex , commaIndex , rightBracketIndex ]
+//		commaIndex is not between left and right if 1 argument
+//	returns 1 if no function is present
 function innerBracket(arr){
   leftIndex = -1;
   comma = -1;
-      parList = new Array(arr.length);
     for( i = 0 ; i < arr.length ; i++ ){
       switch(arr[i]){
         case "[":
@@ -99,47 +107,49 @@ function innerBracket(arr){
   }
 
 //Author Sam Cubberly 7/3/2025
-//@edited Anshuman Ranjan: removed "function" token from beginning of function definition
-//Compute the equation and return a float equivalent to the equation
+//Compute the PEMDAS equation and return a float equivalent to the equation
+//	Args arr <array> contains equation
+//	Requires that all functions and Numbers are out of string form
+//Returns arr[0], after recursion, returning float
 function compute(arr){
   if( arr.length == 1 ){
     return arr[0];
   }
-  if(arr.indexOf("(") != -1){
+  if(arr.indexOf("(") != -1){ //Go through smallest set of parentheses first
     indexes = innerPar(arr);
-    arr.splice(indexes[0], indexes[1] - indexes[0] + 1, compute(arr.slice(indexes[0] + 1, indexes[1])));
+    arr.splice(indexes[0], indexes[1] - indexes[0] + 1, compute(arr.slice(indexes[0] + 1, indexes[1]))); //replace innermost parenthesis
     return compute(arr);
   }else{
-    while(arr.indexOf("^") != -1 ){
+    while(arr.indexOf("^") != -1 ){ // ==> exponent comes first, iterate until no exponents exist
       exp = arr.indexOf("^");
       replaceValue = arr[exp - 1] ** arr[exp+1];
       arr.splice(exp - 1, exp + 2, replaceValue);
     }
 
-    while(arr.indexOf("*") != -1 || arr.indexOf("/") != -1){
+    while(arr.indexOf("*") != -1 || arr.indexOf("/") != -1){ // ==> MD comes next, iterate until no MD left, left to right
       multOpIndex = arr.indexOf("*");
       divOpIndex = arr.indexOf("/");
 
-      if( (multOpIndex < divOpIndex && multOpIndex != -1) || divOpIndex == -1 ){
+      if( (multOpIndex < divOpIndex && multOpIndex != -1) || divOpIndex == -1 ){ //If multiplication comes first
         exp = arr.indexOf("*");
         replaceValue = arr[exp - 1] * arr[exp+1];
         arr.splice(exp - 1, exp + 2, replaceValue);
-      }else{
+      }else{ //If division comes first
         exp = arr.indexOf("/");
         replaceValue = arr[exp - 1] / arr[exp+1];
         arr.splice(exp - 1, exp + 2, replaceValue);
       }
   }
 
-    while(arr.indexOf("+") != -1 || arr.indexOf("-") != -1){
+    while(arr.indexOf("+") != -1 || arr.indexOf("-") != -1){ // ==> AS comes las, iterate until no AS left
       addOpIndex = arr.indexOf("+");
       subOpIndex = arr.indexOf("-");
 
-      if( (addOpIndex < subOpIndex && addOpIndex != -1) || subOpIndex == -1 ){
+      if( (addOpIndex < subOpIndex && addOpIndex != -1) || subOpIndex == -1 ){ //If add is first
         exp = addOpIndex;
         replaceValue = arr[exp - 1] + arr[exp+1];
         arr.splice(exp - 1, exp + 2, replaceValue);
-      }else{
+      }else{ //if subtraction is first
         exp = subOpIndex;
         replaceValue = arr[exp - 1] - arr[exp+1];
         arr.splice(exp - 1, exp + 2, replaceValue);
@@ -150,9 +160,8 @@ function compute(arr){
 }
 
 //Author Sam Cubberly 7/3
-//@edited Anshuman Ranjan: removed "function" token from beginning of function definition
 //Find the inner most set of parenthesis, and then returns the indices of the open and closed
-//parenthesis as [ open , closed ]
+//parenthesis as [ openIndex , closedIndex ]
 function innerPar(arr){
   leftIndex = 0;
   parList = new Array(arr.length);
