@@ -129,11 +129,14 @@ body {
   height: auto;     
   max-height: 80vh;
   border-left: 2px solid #333;
+}
+/*
+#side-panel.collapsed {
   transform: translateX(100%);
 }
 
-#side-panel.collapsed {
-  transform: translateX(100%);
+#side-panel.expanded {
+  transform: translateX(0%);
 }
 
 .toggle-tab {
@@ -151,7 +154,7 @@ body {
   z-index: 9999;
   border-radius: 5px 0 0 5px;
 }
-
+*/
 #memory-panel, #history-panel {
   margin-bottom: 20px;
 }

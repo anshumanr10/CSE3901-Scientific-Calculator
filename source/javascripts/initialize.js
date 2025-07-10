@@ -165,16 +165,60 @@ function showHistory() {
     }
 }
 
-// Optional: Toggle collapsed/expanded for any panel with a toggle tab
+/*
+//Toggle collapsed/expanded for any panel with a toggle tab
 function toggleSidePanel() {
     const panel = document.getElementById("side-panel");
     const tab = panel.querySelector(".toggle-tab");
     panel.classList.toggle("collapsed");
     tab.textContent = panel.classList.contains("collapsed") ? "▶" : "◀";
 }
+*/ 
 
 // Expose toggle functions globally if needed (for inline onclick="")
 window.showMemory = showMemory;
 window.showHistory = showHistory;
 
+
+// Memory Button Handling 
+const memoryButtons = document.querySelectorAll("button.memory-control");
+const memoryObj = new Memory();
+
+memoryButtons.forEach((button) => {
+  const action = button.getAttribute("data-action");
+  button.addEventListener("click", () => {
+    const currentVal = expression.to_s();
+    console.log(`Memory button clicked: ${action}, currentVal: ${currentVal}`);
+    switch (action) {
+      case "MC":
+        memoryObj.clear_memory();
+        console.log("Memory saved as:", memoryObj.recover_memory());
+        break;
+      case "MR":
+        display.textContent = memoryObj.recover_memory();
+        console.log("Memory saved as:", memoryObj.recover_memory());
+        break;
+      case "M+":
+        memoryObj.add_memory(currentVal);
+        console.log("Memory saved as:", memoryObj.recover_memory());
+        break;
+      case "M-":
+        memoryObj.subtract_memory(currentVal);
+        console.log("Memory saved as:", memoryObj.recover_memory());
+        break;
+      case "MS":
+        memoryObj.save_memory(currentVal);
+        console.log("Memory saved as:", memoryObj.recover_memory());
+        break;
+    }
+
+    // update display
+    const memoryDisplay = document.getElementById("memory-display");
+    document.getElementById("memory-display").textContent = memoryObj.recover_memory();
+    if (memoryDisplay) {
+      memoryDisplay.textContent = memoryObj.recover_memory();
+    }
+  });
+});
+// End of Memory Button Handling 
 //End of Yunfeng Wang's part
