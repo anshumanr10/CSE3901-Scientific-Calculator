@@ -1,11 +1,19 @@
 # Project-5-MasterRubyInsane
-
+Contributors: Anshuman Ranjan, Samuel Cubberly, Sepehr Hooshiari, Yunfeng Wang, Oliver Shen
 # Description
 Design a web page that looks and behaves like a scientific calculator.  
 
 # Managers
 Overall project manager: Sam Cubberly  
 Meeting manager: Oliver Shen
+
+# How to Run (Terminal):
+- sudo apt install -y ruby-full ruby-bundler build-essential
+- sudo apt install -y nodejs npm
+- ruby -v; bundle -v
+- bundle install
+- bundle exec middleman server
+- Open your browser at: http://localhost:4567
 
 # Use Cases
 - [Basic] Entering Numbers  
